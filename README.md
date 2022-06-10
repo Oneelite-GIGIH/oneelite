@@ -1,8 +1,8 @@
-# GenGIGIH Capstone Project | Oneelite
+# GenGIGIH Capstone Project | Oneelite 🗑
 
 Oneelite is \_\_\_
 
-### Author
+### 💻 Author
 
 - Muhammad Naufal Pratama | KM_G2BE4080
 -
@@ -10,7 +10,7 @@ Oneelite is \_\_\_
 -
 -
 
-### Developement
+### 🎯 Developement
 
 1. Clone
 
@@ -52,6 +52,6 @@ bundle exec rspec -fd
 rails server
 ```
 
-### Credits
+### 📌 Credits
 
 Thanks to [Generasi GIGIH 2.0](https://www.anakbangsabisa.org/generasi-gigih/)
