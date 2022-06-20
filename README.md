@@ -40,6 +40,10 @@ bundle exec rake db:seed
 bundle exec rspec
 ```
 
+```shell
+rails g rspec:install
+```
+
 5. Run the test
 
 ```shell
