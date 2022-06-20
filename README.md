@@ -50,11 +50,43 @@ rails g rspec:install
 bundle exec rspec -fd
 ```
 
-4. Run
+6. Run
 
 ```ruby
 rails server
 ```
+
+7. Create a New Branch
+
+```git
+git branch nama-branch-baru
+```
+
+8. Checkout to The New Branch
+
+```git
+git checkout nama-branch-baru
+```
+
+9. Start Coding
+
+10. Stage & Commit The Changes
+```git
+git add .
+```
+
+```git
+git commit -m "pesan commit memebuat apa saja"
+```
+
+11. PUSH
+
+```git
+git push origin nama-branch-baru
+```
+
+12. Open a New Merge Request to branch **"develop"**
+
 
 ### 📌 Credits
 
