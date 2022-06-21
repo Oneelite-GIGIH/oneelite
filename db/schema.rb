@@ -10,14 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_20_232954) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_21_204624) do
+  create_table "delivery_couriers", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_delivery_couriers_on_user_id"
+  end
+
   create_table "transactions", force: :cascade do |t|
     t.integer "user_id", null: false
+    t.integer "delivery_courier_id", null: false
     t.integer "waste_id", null: false
-    t.decimal "nominal_dibayar"
+    t.decimal "nominal_dibayar", default: "0.0"
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["delivery_courier_id"], name: "index_transactions_on_delivery_courier_id"
     t.index ["user_id"], name: "index_transactions_on_user_id"
     t.index ["waste_id"], name: "index_transactions_on_waste_id"
   end
@@ -44,6 +53,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_20_232954) do
     t.index ["user_id"], name: "index_wastes_on_user_id"
   end
 
+  add_foreign_key "delivery_couriers", "users"
+  add_foreign_key "transactions", "delivery_couriers"
   add_foreign_key "transactions", "users"
   add_foreign_key "transactions", "wastes"
   add_foreign_key "wastes", "users"
