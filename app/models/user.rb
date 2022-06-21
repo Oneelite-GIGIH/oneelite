@@ -1,4 +1,10 @@
 class User < ApplicationRecord
+    has_many :wastes, class_name: "waste", foreign_key: "reference_id"
+
+    has_many :transactions, class_name: "transactions", foreign_key: "reference_id"
+
+    has_one :delivery_courier, class_name: "delivery_courier", foreign_key: "delivery_courier_id"
+
     enum role: { PENGGUNA: 0, KURIR: 1 }
 
     validates :nama, presence: true
