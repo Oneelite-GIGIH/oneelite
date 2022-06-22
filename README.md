@@ -14,6 +14,10 @@ Oneelite is \_\_\_
 
 1. Clone
 
+```
+git clone https://github.com/Oneelite-GIGIH/oneelite.git
+```
+
 2. Install all of the packages
 
 ```shell
@@ -87,6 +91,11 @@ git push origin nama-branch-baru
 
 12. Open a New Merge Request to branch **"develop"**
 
+13. db:migrate for an existing model
+
+```
+rails db:schema:load
+```
 
 ### 📌 Credits
 
