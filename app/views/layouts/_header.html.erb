@@ -1,0 +1,31 @@
+<div class="dtr-responsive-header fixed-top">
+    <div class="container"> 
+        <%= link_to (image_tag("oneelite-logo.png", alt: "logo-oneelite")) %>
+        <button id="dtr-menu-button" class="dtr-hamburger" type="button"><span class="dtr-hamburger-lines-wrapper"><span class="dtr-hamburger-lines"></span></span></button>
+    </div>
+    <div class="dtr-responsive-header-menu"></div>
+</div>
+    
+<header id="dtr-header-global" class="fixed-top bg-white">
+    <div class="container">
+        <div class="d-flex align-items-center justify-content-between"> 
+            
+            <div class="dtr-header-left">     
+                <%= link_to image_tag("oneelite-logo.png", alt: "logo-oneelite"), root_path, class: "logo-default dtr-scroll-link" %> 
+            </div>
+            
+            <div class="main-navigation navbar navbar-expand-lg ml-auto">
+                <ul class="dtr-scrollspy navbar-nav dtr-nav dark-nav-on-load dark-nav-on-scroll">
+                    <li class="nav-item"><%= link_to "Home", '#home', class: "nav-link active" %></li>
+                    <li class="nav-item"><%= link_to "Fitur", '#feature', class: "nav-link" %></li>
+                    <li class="nav-item"><%= link_to "Solusi", '#solusi', class: "nav-link" %></li>
+                </ul>
+            </div>
+            
+            <!-- header right starts -->
+            <div class="dtr-header-right"><%= link_to "Masuk", '#', class: "dtr-btn btn-green dtr-scroll-link dtr-px-50" %> </div>
+            <!-- header right ends --> 
+            
+        </div>
+    </div>
+</header>

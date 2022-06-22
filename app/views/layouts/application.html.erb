@@ -10,6 +10,11 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div id="dtr-wrapper" class="clearfix"> 
+        <%= render "layouts/header" %>
+            <%= yield %>
+            <%= render "layouts/footer" %>
+        </div>
+    </div>
   </body>
 </html>
