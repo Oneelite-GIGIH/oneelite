@@ -13,7 +13,7 @@ RSpec.describe "Orders", type: :request do
     end
 
     describe 'POST /order/onepick' do
-      it '[controller.order.1] it should save the new order into the database' do
+      it '[controller.order.2] it should save the new order into the database if waste & transaction data are valid' do
         user = FactoryBot.build(:user)
         valid_attributes_waste = FactoryBot.attributes_for(:waste)
 
@@ -22,8 +22,35 @@ RSpec.describe "Orders", type: :request do
 
         post "/order/onepick", params: valid_attributes_waste
 
-        expect(response.body).to_not eq(nil)
+        expect(response).to have_http_status(:success)
         expect(flash[:message]).to eq('✅ Berhasil menambahkan pesanan OnePick')
+        expect(response.content_type).to eq("text/html; charset=utf-8")
+      end
+
+      it '[controller.order.3] it should return error & not save the order into the database if waste data is not valid' do
+        user = FactoryBot.build(:user)
+        valid_attributes_waste = FactoryBot.attributes_for(:waste, jenis_sampah: nil)
+
+        expect{post "/order/onepick", params: valid_attributes_waste}.to change(Waste, :count).by(0)
+        expect{post "/order/onepick", params: valid_attributes_waste}.to change(Transaction, :count).by(0)
+
+        post "/order/onepick", params: valid_attributes_waste
+
+        expect(response).to have_http_status(:bad_request)
+        expect(flash[:message]).to eq('❌ Gagal menambahkan pesanan OnePick. Data Sampah tidak valid')
+        expect(response.content_type).to eq("text/html; charset=utf-8")
+      end
+
+      it '[controller.order.4] it should return error & not save the order into the database if transaction data is not valid' do
+        user = FactoryBot.build(:user)
+        valid_attributes_waste = FactoryBot.attributes_for(:waste, berat: nil) # transaction need waste, so if waste is not valid, either transaction
+
+        expect{post "/order/onepick", params: valid_attributes_waste}.to change(Waste, :count).by(0)
+        expect{post "/order/onepick", params: valid_attributes_waste}.to change(Transaction, :count).by(0)
+
+        post "/order/onepick", params: valid_attributes_waste
+
+        expect(flash[:message]).to eq('❌ Gagal menambahkan pesanan OnePick. Data Sampah tidak valid')
         expect(response.content_type).to eq("text/html; charset=utf-8")
       end
     end
