@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # HOME
+  root to: 'main#index', :as => :home
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  # AUTH
+
+  # PENGGUNA
+
+  # KURIR
+
+  # ORDER
+  get '/order/onepick', to: 'order#show_create_onepick_order', :as => :show_create_onepick_order
+  post '/order/onepick', to: 'order#create_onepick_order', :as => :create_onepick_order
 end

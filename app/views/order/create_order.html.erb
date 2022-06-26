@@ -1,0 +1,32 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <form action="/order/onepick" method="POST" enctype="multipart/form-data">
+        <%= csrf_meta_tags %>
+          <div class="form-group">
+            <label for="jenis_sampah">Jenis Sampah</label>
+            <input type="text" class="form-control" name="jenis_sampah" id="jenis_sampah" placeholder="Masukkan jenis sampah" required>
+          </div>
+
+          <div class="form-group">
+            <label for="berat_sampah">Berat Sampah (kg)</label>
+            <input type="number" class="form-control" name="berat" id="berat_sampah" placeholder="Masukkan berat sampah (kg)" required>
+          </div>
+
+
+          <div class="form-group">
+            <label for="gambar_sampah">Gambar Sampah</label>
+            <input type="file" accept="image/*" class="form-control" name="gambar" id="gambar_sampah" placeholder="Gambar Sampah" required>
+          </div>
+
+          <div class="form-group">
+            <label for="alamat_penjemputan">Alamat Penjemputan</label>
+            <input type="text" class="form-control" name="alamat_penjemputan" id="alamat_penjemputan" placeholder="Masukkan alamat penjemputan" required>
+          </div>
+
+          <div class="form-group">
+              <button type="submit" class="btn btn-success">Simpan</button>
+              <a href="/" class="btn btn-danger btn-md">Batal</a>
+          </div>
+        </form>             
+    </div>
+</div>
