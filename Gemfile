@@ -19,7 +19,7 @@ gem "tzinfo-data"
 gem "tzinfo"
 gem "bootsnap", require: false
 # gem "sassc-rails"
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
 
 gem "nokogiri"
 
