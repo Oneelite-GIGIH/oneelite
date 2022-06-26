@@ -24,17 +24,17 @@ class OrderController < ApplicationController
         if order.valid?
           order.save
           flash[:message] = '✅ Berhasil menambahkan pesanan OnePick'
-          redirect_to home_url
+          render 'main/homepage', :status => :ok
         else
           flash[:message] = '❌ Gagal menambahkan pesanan OnePick. Data transaksi tidak valid'
           raise ActiveRecord::Rollback
-          redirect_to show_create_onepick_order_url
+          render 'create_order', :status => :bad_request
         end
 
       end
     else
       flash[:message] = '❌ Gagal menambahkan pesanan OnePick. Data Sampah tidak valid'
-      redirect_to show_create_onepick_order_url
+      render 'create_order', :status => :bad_request
     end
 
     # TODO: send notification to all Kurir account
