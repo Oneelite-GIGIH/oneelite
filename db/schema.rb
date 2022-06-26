@@ -20,7 +20,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_21_204624) do
 
   create_table "transactions", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "delivery_courier_id", null: false
+    t.integer "delivery_courier_id"
     t.integer "waste_id", null: false
     t.decimal "nominal_dibayar", default: "0.0"
     t.integer "status", default: 0
