@@ -3,7 +3,7 @@ class OrderController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def show_create_onepick_order
-    render "create_order"
+    render "create_onepick_order"
   end
 
   def create_onepick_order
@@ -28,13 +28,13 @@ class OrderController < ApplicationController
         else
           flash[:message] = '❌ Gagal menambahkan pesanan OnePick. Data transaksi tidak valid'
           raise ActiveRecord::Rollback
-          render 'create_order', :status => :bad_request
+          render 'create_onepick_order', :status => :bad_request
         end
 
       end
     else
       flash[:message] = '❌ Gagal menambahkan pesanan OnePick. Data Sampah tidak valid'
-      render 'create_order', :status => :bad_request
+      render 'create_onepick_order', :status => :bad_request
     end
 
     # TODO: send notification to all Kurir account

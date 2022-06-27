@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   # KURIR
 
   # ORDER
-  get '/order/onepick', to: 'order#show_create_onepick_order', :as => :show_create_onepick_order
-  post '/order/onepick', to: 'order#create_onepick_order', :as => :create_onepick_order
+  get '/create/order/onepick', to: 'order#show_create_onepick_order', :as => :show_create_onepick_order
+  post '/create/order/onepick', to: 'order#create_onepick_order', :as => :create_onepick_order
 end
