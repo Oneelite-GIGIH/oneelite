@@ -1,9 +1,17 @@
 class OrderController < ApplicationController
+  include Rails.application.routes.url_helpers
   # TODO: remove this after login feature complete
   skip_before_action :verify_authenticity_token
 
+  def show_list_onepick_order
+    # TODO: remove this 'user' after login feature complete
+    user = FactoryBot.build(:user)
+    orders = Transaction.where(user: user).order('updated_at ASC') # data order == data transaction
+    render 'list_onepick_order', locals: { orders: orders }
+  end
+
   def show_create_onepick_order
-    render "create_onepick_order"
+    render 'create_onepick_order'
   end
 
   def create_onepick_order
@@ -24,20 +32,25 @@ class OrderController < ApplicationController
         if order.valid?
           order.save
           flash[:message] = '✅ Berhasil menambahkan pesanan OnePick'
-          render 'main/homepage', :status => :ok
+          send_notification_to_courier(user.nama) 
+          redirect_to show_list_onepick_order_path, :status => :ok
         else
           flash[:message] = '❌ Gagal menambahkan pesanan OnePick. Data transaksi tidak valid'
           raise ActiveRecord::Rollback
-          render 'create_onepick_order', :status => :bad_request
+          redirect_to show_create_onepick_order_path, :status => :bad_request
         end
 
       end
     else
       flash[:message] = '❌ Gagal menambahkan pesanan OnePick. Data Sampah tidak valid'
-      render 'create_onepick_order', :status => :bad_request
+      redirect_to show_create_onepick_order_path, :status => :bad_request
     end
+  end
 
-    # TODO: send notification to all Kurir account
+  # TODO: send notification to all Kurir account
+  def send_notification_to_courier(pengguna_name)
+    message = "1 pesanan baru dari Pengguna '#{pengguna_name}'"
+    return message
   end
 
   private

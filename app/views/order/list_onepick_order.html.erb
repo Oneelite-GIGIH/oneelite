@@ -1,0 +1,12 @@
+<h1>List of order</h1>
+
+<% if orders.length > 0 %>
+  <ul>
+    <% orders.each_with_index do |order, index| %>
+      <li><%= index + 1 %></li>
+      <li><%= order %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>kosong</p>
+<% end %>
