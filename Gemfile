@@ -12,7 +12,7 @@ gem "importmap-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
 gem "jbuilder"
-gem 'bcrypt',           "~> 3.1.18"
+gem "bcrypt",           "~> 3.1.18"
 # gem "redis", "~> 4.0"
 # gem "kredis"
 gem "tzinfo-data"
@@ -20,6 +20,8 @@ gem "tzinfo"
 gem "bootsnap", require: false
 # gem "sassc-rails"
 # gem "image_processing", "~> 1.2"
+gem "bootstrap",        "~> 4.5.2"
+gem "jquery-rails"
 
 gem "nokogiri"
 

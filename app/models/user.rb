@@ -11,9 +11,9 @@ class User < ApplicationRecord
                                         format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, message: "Format Email Salah" },
                                         uniqueness: true
 
-    validates :role, presence: true, inclusion: { in: roles }
-    validates :saldo, presence: true, numericality: { greater_than_or_equal_to: 0 }
-    validates :alamat, presence: true
+    validates :role, presence: false, inclusion: { in: roles }
+    # validates :saldo, presence: true, numericality: { greater_than_or_equal_to: 0 }
+    validates :alamat, presence: false
 
     has_secure_password
     validates :password, presence: true, length: { minimum: 6 }
