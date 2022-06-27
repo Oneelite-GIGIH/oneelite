@@ -4,7 +4,9 @@
   <ul>
     <% orders.each_with_index do |order, index| %>
       <li><%= index + 1 %></li>
-      <li><%= order %></li>
+      <li><%= order.jenis_sampah %></li>
+      <li><%= order.berat %></li>
+      <li><%= order.alamat_penjemputan %></li>
     <% end %>
   </ul>
 <% else %>

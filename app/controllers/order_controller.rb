@@ -6,7 +6,7 @@ class OrderController < ApplicationController
   def show_list_onepick_order
     # TODO: remove this 'user' after login feature complete
     user = FactoryBot.build(:user)
-    orders = Transaction.where(user: user).order('updated_at ASC') # data order == data transaction
+    orders = Waste.where(user: user).order('created_at DESC') # data order == data waste
     render 'list_onepick_order', locals: { orders: orders }
   end
 
