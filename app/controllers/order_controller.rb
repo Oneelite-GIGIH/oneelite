@@ -1,5 +1,4 @@
 class OrderController < ApplicationController
-  include Rails.application.routes.url_helpers
   # TODO: remove this after login feature complete
   skip_before_action :verify_authenticity_token
 
@@ -7,7 +6,10 @@ class OrderController < ApplicationController
     # TODO: remove this 'user' after login feature complete
     user = FactoryBot.build(:user)
     orders = Waste.where(user: user).order('created_at DESC') # data order == data waste
-    render 'list_onepick_order', locals: { orders: orders }
+    respond_to do |format|
+      format.json { render json: send_success('✅ Berhasil menampilkan daftar pesanan', orders) }
+      format.html { render 'list_onepick_order', locals: { orders: orders }}
+    end
   end
 
   def show_create_onepick_order
@@ -31,19 +33,28 @@ class OrderController < ApplicationController
 
         if order.valid?
           order.save
-          flash[:message] = '✅ Berhasil menambahkan pesanan OnePick'
           send_notification_to_courier(user.nama) 
-          redirect_to show_list_onepick_order_path, :status => :ok
+          flash[:message] = '✅ Berhasil menambahkan pesanan OnePick'
+          respond_to do |format|
+            format.json { render json: send_success('✅ Berhasil menambahkan pesanan OnePick', order) }
+            format.html { redirect_to show_list_onepick_order_path, :status => :ok }
+          end
         else
-          flash[:message] = '❌ Gagal menambahkan pesanan OnePick. Data transaksi tidak valid'
           raise ActiveRecord::Rollback
-          redirect_to show_create_onepick_order_path, :status => :bad_request
+          flash[:message] = '❌ Gagal menambahkan pesanan OnePick. Data transaksi tidak valid'
+          respond_to do |format|
+            format.json { render json: send_failed('❌ Gagal menambahkan pesanan OnePick. Data transaksi tidak valid', nil), :status => :bad_request }
+            format.html { redirect_to show_create_onepick_order_path, status: :bad_request }
+          end
         end
 
       end
     else
       flash[:message] = '❌ Gagal menambahkan pesanan OnePick. Data Sampah tidak valid'
-      redirect_to show_create_onepick_order_path, :status => :bad_request
+      respond_to do |format|
+        format.json { render json: send_failed('❌ Gagal menambahkan pesanan OnePick. Data Sampah tidak valid', nil), :status => :bad_request }
+        format.html { redirect_to show_create_onepick_order_path, status: :bad_request }
+      end
     end
   end
 
