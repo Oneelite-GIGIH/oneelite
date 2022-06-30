@@ -8,7 +8,7 @@ RSpec.describe User, type: :model do
     end
 
     it '[model.user.2] is valid with valid user data' do
-      user = User.new(nama: "Nama Test 2", no_hp: "+62 881234567", email: "test2@gmail.com", role: 0, saldo: 99.999, alamat: "Test Jalan 2")
+      user = User.new(nama: "Nama Test 2", no_hp: "+62 881234567", email: "test2@gmail.com", password: "12341234", role: 0, saldo: 99.999, alamat: "Test Jalan 2")
       user.valid?
       expect(user).to be_valid
     end
@@ -40,7 +40,7 @@ RSpec.describe User, type: :model do
 
     it '[model.user.8] is not valid without alamat' do
       user = FactoryBot.build(:user, alamat: nil)
-      expect(user).to_not be_valid
+      expect(user).to be_valid
     end
 
     it '[model.user.9] is not valid if email format is invalid' do
@@ -49,7 +49,7 @@ RSpec.describe User, type: :model do
     end
 
     it '[model.user.10] is not valid if role is invalid' do
-      expect { User.new(nama: "Nama Test 2", no_hp: "+62 881234567", email: "test2@gmail.com", role: 99, saldo: 99.999, alamat: "Test Jalan 2") }.to raise_error(ArgumentError)
+      expect { User.new(nama: "Nama Test 2", no_hp: "+62 881234567", email: "test2@gmail.com", password: "12341234", role: 99, saldo: 99.999, alamat: "Test Jalan 2") }.to raise_error(ArgumentError)
     end
 
     it '[model.user.11] is not valid if saldo is not decimal or number' do

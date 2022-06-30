@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_21_204624) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_22_123044) do
   create_table "delivery_couriers", force: :cascade do |t|
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
@@ -36,10 +36,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_21_204624) do
     t.string "no_hp"
     t.string "email"
     t.integer "role", default: 0
-    t.decimal "saldo"
+    t.decimal "saldo", default: "0.0"
     t.text "alamat"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   create_table "wastes", force: :cascade do |t|

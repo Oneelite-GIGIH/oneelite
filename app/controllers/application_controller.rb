@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include SessionsHelper
+
   protect_from_forgery with: :exception
   helper_method :user_is_logged_in? 
   helper_method :send_success

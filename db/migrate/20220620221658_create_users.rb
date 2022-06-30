@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :no_hp
       t.string :email
       t.integer :role, default: 0
-      t.decimal :saldo
+      t.decimal :saldo, default: 0
       t.text :alamat
 
       t.timestamps
