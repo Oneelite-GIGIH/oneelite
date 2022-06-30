@@ -1,10 +1,8 @@
 class OrderController < ApplicationController
-  # TODO: remove this after login feature complete
   skip_before_action :verify_authenticity_token
 
   def show_list_onepick_order
-    # TODO: remove this 'user' after login feature complete
-    user = FactoryBot.build(:user)
+    user = current_user
     orders = Waste.where(user: user).order('created_at DESC') # data order == data waste
     respond_to do |format|
       format.json { render json: send_success('✅ Berhasil menampilkan daftar pesanan', orders) }
@@ -17,8 +15,7 @@ class OrderController < ApplicationController
   end
 
   def create_onepick_order
-    # TODO: remove this 'user' after login feature complete
-    user = FactoryBot.build(:user)
+    user = current_user
     jenis_sampah = params['jenis_sampah']
     berat_sampah = params['berat']
     gambar_sampah = params['gambar']
@@ -35,6 +32,7 @@ class OrderController < ApplicationController
           order.save
           send_notification_to_courier(user.nama) 
           flash[:message] = '✅ Berhasil menambahkan pesanan OnePick'
+
           respond_to do |format|
             format.json { render json: send_success('✅ Berhasil menambahkan pesanan OnePick', order) }
             format.html { redirect_to show_list_onepick_order_path, :status => :ok }
@@ -42,6 +40,7 @@ class OrderController < ApplicationController
         else
           raise ActiveRecord::Rollback
           flash[:message] = '❌ Gagal menambahkan pesanan OnePick. Data transaksi tidak valid'
+
           respond_to do |format|
             format.json { render json: send_failed('❌ Gagal menambahkan pesanan OnePick. Data transaksi tidak valid', nil), :status => :bad_request }
             format.html { redirect_to show_create_onepick_order_path, status: :bad_request }

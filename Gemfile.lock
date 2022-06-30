@@ -113,6 +113,9 @@ GEM
       activesupport (>= 5.0)
     i18n (1.10.0)
       concurrent-ruby (~> 1.0)
+    image_processing (1.12.2)
+      mini_magick (>= 4.9.5, < 5)
+      ruby-vips (>= 2.0.17, < 3)
     importmap-rails (1.1.2)
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
@@ -285,8 +288,8 @@ DEPENDENCIES
   factory_bot_rails
   faker
   ffi
-  image_processing (~> 1.2)
   font-awesome-rails
+  image_processing (~> 1.2)
   importmap-rails
   jbuilder
   jquery-rails

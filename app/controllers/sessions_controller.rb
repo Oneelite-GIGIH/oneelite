@@ -19,7 +19,10 @@ class SessionsController < ApplicationController
   def destroy
     message = 'Sampai jumpa kembali!'
     flash.now[:success] = message
-    render :json => {:message => message}
+    respond_to do |format|
+      format.json { render json: send_success(message, nil) }
+      format.html { render 'home_pages#index', locals: { message: message } }
+    end
   end
 
 end

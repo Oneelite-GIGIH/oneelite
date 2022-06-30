@@ -3,12 +3,14 @@ class UsersController < ApplicationController
 
   def index
     @user = User.find_by(id: current_user)
-    render :json => {:message => @user}
+    respond_to do |format|
+      format.json { render json: send_success(' Berhasil menampilkan daftar user', @user) }
+      format.html { render 'dashboard#index', locals: { user: @user } }
+    end
   end
 
   def show
     @user = User.find(params[:id])
-    render :json => {:message => @user}
   end
 
   def new
