@@ -1,0 +1,58 @@
+
+
+<div class="dtr-py-80">
+    <div class="authincation h-100">
+        <div class="container h-100">
+            <div class="row justify-content-center dtr-py-80 h-100 align-items-center">
+                <div class="col-md-6">
+                    <div class="authincation-content">
+                        <div class="row no-gutters">
+                            <div class="col-xl-12">
+                                <div class="auth-form">
+                                    <h4 class="text-center mb-4">Daftarkan akun Anda</h4>
+                                    <%= form_with(model: @user) do |f| %>
+                                        <%= render 'shared/error_messages' %>
+                                        <div class="form-group">
+                                            <%= f.label :nama %>
+                                            <%= f.text_field :nama, class: "form-control" ,placeholder: "Nama Anda" %>
+                                        </div>
+                                        <div class="form-group">
+                                            <%= f.label :no_hp %>
+                                            <%= f.text_field :no_hp, class: "form-control" ,placeholder: "Nomor handphone Anda" %>
+                                        </div>
+                                        <div class="form-group">
+                                            <%= f.label :email %>
+                                            <%= f.text_field :email, class: "form-control" ,placeholder: "Email Anda" %>
+                                        </div>
+                                        <div class="form-group">
+                                            <%= f.label :alamat %>
+                                            <%= f.text_field :alamat, class: "form-control" ,placeholder: "Alamat Anda" %>
+                                        </div>
+                                        <div class="form-group">
+                                            <%= f.label :role %>
+                                            <%= f.select :role, [["Pengguna", "0"], ["Kurir", "1"]], selected: "0" %>
+                                        </div>
+                                        <div class="form-group">
+                                            <%= f.label :password %>                                            
+                                            <%= f.password_field :password, class: "form-control" %>
+                                        </div>
+                                        <div class="form-group">
+                                            <%= f.label :password_confirmation, "Konfirmasi Password" %>
+                                            <%= f.password_field :password_confirmation, class: "form-control" %>
+                                        </div>
+                                        <div class="text-center mt-4">
+                                            <%= f.submit "Daftar", class: "dtr-btn btn-green btn-block" %>
+                                        </div>
+                                    <% end %>
+                                    <div class="new-account mt-3">
+                                        <p>Sudah memiliki akun? <%= link_to "Masuk", login_path, class: "color-green" %></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
