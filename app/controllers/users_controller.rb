@@ -1,9 +1,13 @@
 class UsersController < ApplicationController
+  def index
+    @user = User.find_by(id: current_user)
+    render :json => {:message => @user}
+  end
 
   def show
     @user = User.find(params[:id])
   end
-  
+
   def new
     @user = User.new
   end
@@ -21,8 +25,7 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:nama, :no_hp, :email, :password,
-                                   :password_confirmation)
+      params.require(:user).permit(:nama, :no_hp, :email, :alamat, :password, :password_confirmation)
     end
 
 end

@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def new
   end
 
@@ -15,6 +17,9 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    message = 'Sampai jumpa kembali!'
+    flash.now[:success] = message
+    render :json => {:message => message}
   end
 
 end
