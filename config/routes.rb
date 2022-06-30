@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
-  root "home_pages#index"
-  
-  get "home", to: "home_pages#index"
-  get  "/signup",  to: "users#new"
+  get 'dashboard/index'
+  get 'sessions/new'
+  root    "home_pages#index"
+  get     "home",     to: "home_pages#index"
+  get     "/signup",  to: "users#new"
+  get     "/login",   to: "sessions#new"
+  post    "/login",   to: "sessions#create"
+  delete  "/logout",  to: "sessions#destroy"
 
   resources :users
 
