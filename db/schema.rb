@@ -36,7 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_22_123044) do
     t.string "no_hp"
     t.string "email"
     t.integer "role", default: 0
-    t.decimal "saldo"
+    t.decimal "saldo", default: "0.0"
     t.text "alamat"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
