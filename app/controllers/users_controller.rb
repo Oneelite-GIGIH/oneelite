@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    @user = User.find_by(id: current_user)
+    @user = User.all
     respond_to do |format|
       format.json { render json: send_success(' Berhasil menampilkan daftar user', @user) }
       format.html { render 'dashboard#index', locals: { user: @user } }
