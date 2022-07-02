@@ -63,6 +63,15 @@ class OrderController < ApplicationController
     return message
   end
 
+  def show_transaction_history
+    user = current_user
+    transactions = Transaction.where(user: user).order('created_at DESC')
+    respond_to do |format|
+      format.json { render json: send_success(' Berhasil menampilkan histori transaksi', transactions) }
+      format.html { render 'transaction_history', locals: { transactions: transactions } }
+    end
+  end
+
   private
     def waste_params
       params.permit(:user, :jenis_sampah, :berat, :gambar, :alamat_penjemputan)

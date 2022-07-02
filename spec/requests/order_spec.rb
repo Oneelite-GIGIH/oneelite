@@ -69,5 +69,15 @@ RSpec.describe "Orders", type: :request do
       end
     end
 
+    describe '/order/history' do
+      it '[controller.order.6] it should show transactions history page' do
+
+        get '/order/history'
+
+        expect(response).to have_http_status(:success)
+        expect(response).to render_template :transaction_history
+      end
+    end
+
   end
 end
