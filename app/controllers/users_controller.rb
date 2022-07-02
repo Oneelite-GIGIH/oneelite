@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    @user = User.find_by(id: current_user)
+    @user = User.all()
     render :json => {:message => @user}
   end
 
