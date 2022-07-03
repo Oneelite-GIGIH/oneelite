@@ -69,7 +69,7 @@ RSpec.describe "Orders", type: :request do
       end
     end
 
-    describe '/order/history' do
+    describe 'GET /order/history' do
       it '[controller.order.6] it should show transactions history page' do
 
         get '/order/history'
@@ -77,6 +77,29 @@ RSpec.describe "Orders", type: :request do
         expect(response).to have_http_status(:success)
         expect(response).to render_template :transaction_history
       end
+    end
+
+    describe 'GET /transactions' do
+      it '[controller.order.7] it should show all transactions' do
+
+        get '/transactions'
+
+        expect(response).to have_http_status(:success)
+        expect(response).to render_template :list_all_transactions
+      end
+    end
+
+    describe 'POST /transactions/:transaction_id/:new_status' do
+      # it '[controller.order.8] it should change the transaction status' do
+      #   user = User.new(nama: "Nama Test 2", no_hp: "+62 881234567", email: "test2@gmail.com", role: 0, saldo: 99.999, alamat: "Test Jalan 2")
+      #   waste = Waste.new(user: user, jenis_sampah: "Makanan Sisa", berat: 3, gambar: "/transaction/gambar/sampah_1.png", alamat_penjemputan: "Jl. Test 2")
+      #   delivery_courier = DeliveryCourier.new(user: user)
+      #   transaction = Transaction.new(user: user, waste: waste, delivery_courier: delivery_courier, nominal_dibayar: 10000, status: 0)
+
+      #   post '/transactions/:transaction_id/:new_status', params: { transaction_id: transaction.id, new_status: 'DELIVERED' }
+
+      #   expect(response).to have_http_status(:success)
+      # end
     end
 
   end
