@@ -32,6 +32,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def get_current_user
+    user = User.find_by(id: current_user)
+    respond_to do |format|
+      format.json { render json: send_success('✅ Berhasil mendapat data user saat ini', user), :status => :ok }
+      format.html { redirect_to users_path, :status => :ok }
+    end
+  end
+
   private
 
     def user_params
