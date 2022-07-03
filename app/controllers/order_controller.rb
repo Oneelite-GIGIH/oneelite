@@ -67,8 +67,59 @@ class OrderController < ApplicationController
     user = current_user
     transactions = Transaction.where(user: user).order('created_at DESC')
     respond_to do |format|
-      format.json { render json: send_success(' Berhasil menampilkan histori transaksi', transactions) }
+      format.json { render json: send_success('✅ Berhasil menampilkan histori transaksi', transactions) }
       format.html { render 'transaction_history', locals: { transactions: transactions } }
+    end
+  end
+
+  def show_all_transactions
+    transactions = Transaction.all()
+    respond_to do |format|
+      format.json { render json: send_success('✅ Berhasil menampilkan semua pesanan', transactions), :status => :ok }
+      format.html { render 'list_all_transactions', locals: { transactions: transactions }, :status => :ok }
+    end
+  end
+
+  def change_transaction_status
+    new_status = params[:new_status]
+    transaction_id = params[:transaction_id]
+    transaction = Transaction.find(transaction_id)
+
+    if transaction.nil?
+      respond_to do |format|
+        format.json { render json: send_failed('❌ Gagal mengganti status', transactions), :status => :bad_request }
+        format.html { redirect_to show_all_transactions_path , :status => :bad_request }
+      end
+    end
+
+    transaction.update(status: new_status)
+    respond_to do |format|
+      format.json { render json: send_success('✅ Berhasil memperbarui status pesanan', transaction), :status => :ok }
+      format.html { redirect_to show_all_transactions_path, :status => :ok }
+    end
+  end
+
+  def confirm_transaction
+    transaction_id = params[:transaction_id]
+    transaction = Transaction.find(transaction_id)
+
+    if transaction.nil?
+      respond_to do |format|
+        format.json { render json: send_failed('❌ Gagal mengganti status', transactions), :status => :bad_request }
+        format.html { redirect_to show_all_transactions_path , :status => :bad_request }
+      end
+    end
+
+    # TODO: find a way to handle nominal_bayar
+    nominal_bayar = 10000
+    transaction.update(status: "PAID", nominal_dibayar: nominal_bayar)
+    user = User.find(transaction.user.id)
+    new_user_saldo = user.saldo + nominal_bayar
+    user.update_column(:saldo, new_user_saldo)
+
+    respond_to do |format|
+      format.json { render json: send_success('✅ Berhasil mengkonfirmasi transaksi', transaction), :status => :ok }
+      format.html { redirect_to show_all_transactions_path, :status => :ok }
     end
   end
 

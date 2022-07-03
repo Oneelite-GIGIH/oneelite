@@ -1,0 +1,23 @@
+<h1>List All Transactions</h1>
+
+<% if transactions.length > 0 %>
+  <ul>
+    <% transactions.each_with_index do |transaction, index| %>
+      <li><%= index + 1 %></li>
+      <%# <li><%= transaction.delivery_courier.user.nama %></li> %>
+      <li><%= transaction.waste.jenis_sampah %></li>
+      <li><%= transaction.waste.berat %></li>
+      <li><%= transaction.waste.gambar %></li>
+      <li><%= transaction.waste.alamat_penjemputan %></li>
+      <li><%= transaction.nominal_dibayar %></li>
+      <li><%= transaction.status %></li>
+      <%# TODO: Button still error %>
+      <%# <li><%= button_to "Deliver", change_transaction_status_path, method: :post, params: { new_status: "DELIVERED", transaction_id: transaction.id } %></li> %>
+      <%# <li><%= button_to "Cancel", change_transaction_status_path, method: :post, params: { new_status: "CANCELLED", transaction_id: transaction.id } %></li> %>
+      <%# <li><%= button_to "Confirm", create_transaction_path, method: :post, params: { transaction_id: transaction.id } %></li> %>
+    <% end %>
+  </ul>
+<% else %>
+  <p>kosong</p>
+<% end %>
+
