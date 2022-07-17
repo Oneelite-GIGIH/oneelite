@@ -1,0 +1,294 @@
+{
+	"info": {
+		"_postman_id": "004dbf1b-7988-41d7-94f2-25fcbf10e934",
+		"name": "GIGIH BEWA5",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"coba1@coba.com\",\r\n    \"password\": \"12341234\",\r\n    \"password_confirmation\": \"12341234\",\r\n    \"alamat\": \"Jl. Jalan\",\r\n    \"role\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{development}}:{{port}}/users",
+							"host": [
+								"{{development}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"pengguna2@oneelite.com\",\r\n    \"password\": \"12341234\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{development}}:{{port}}/login",
+							"host": [
+								"{{development}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{development}}:{{port}}/logout",
+							"host": [
+								"{{development}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get Current User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{development}}:{{port}}/current/user",
+							"host": [
+								"{{development}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"current",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{development}}:{{port}}/users",
+							"host": [
+								"{{development}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Get List of Waste Order/Book Waste",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{development}}:{{port}}/order/onepick",
+							"host": [
+								"{{development}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"order",
+								"onepick"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Transaction History",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{development}}:{{port}}/order/onepick",
+							"host": [
+								"{{development}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"order",
+								"onepick"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Waste Order/Book Waste",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "jenis_sampah",
+									"value": "Makanan",
+									"type": "default"
+								},
+								{
+									"key": "berat",
+									"value": "2",
+									"type": "default"
+								},
+								{
+									"key": "gambar",
+									"type": "file",
+									"src": "21.png"
+								},
+								{
+									"key": "alamat_penjemputan",
+									"value": "Jl. Jalan",
+									"type": "default"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{development}}:{{port}}/order/onepick/new",
+							"host": [
+								"{{development}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"order",
+								"onepick",
+								"new"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Change Transaction Status",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{development}}:{{port}}/transactions/1/DELIVERED",
+							"host": [
+								"{{development}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"transactions",
+								"1",
+								"DELIVERED"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Confirm Transaction",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{development}}:{{port}}/transactions/1/confirm",
+							"host": [
+								"{{development}}"
+							],
+							"port": "{{port}}",
+							"path": [
+								"transactions",
+								"1",
+								"confirm"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Buat COBA-COBA",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{development}}:{{port}}/transactions/1/confirm",
+					"host": [
+						"{{development}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"transactions",
+						"1",
+						"confirm"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "development",
+			"value": "127.0.0.1"
+		},
+		{
+			"key": "port",
+			"value": "3000"
+		}
+	]
+}
